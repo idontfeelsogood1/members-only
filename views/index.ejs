@@ -8,7 +8,10 @@
 <body>
     <%- include('./header', { title: title, isAuth: isAuth }) %> 
     <% if (!isAuth) { %>
+        <h1>Hi!, Guest.</h1>
         <h1>Login or Sign-up to see who is talking.</h1>
+    <% } else { %>
+        <h1>Hi!, <%= user.username %></h1>
     <% } %>
 
     <% users.forEach((obj) => { %>
