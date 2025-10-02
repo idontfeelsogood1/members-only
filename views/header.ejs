@@ -1,0 +1,53 @@
+<%
+    function getHeaderLinks(isAuth) {
+        if (isAuth) {
+            return [
+                {
+                    url: '/',
+                    name: 'Home',
+                },
+                {
+                    url: '/logout',
+                    name: 'Logout',
+                }, 
+                {
+                    url: '/membership',
+                    name: 'Membership',
+                }, 
+                {
+                    url: '/new-message',
+                    name: 'Post Message',
+                }
+            ]
+        } else {
+            return [
+                {
+                    url: '/',
+                    name: 'Home',
+                },
+                {
+                    url: '/register',
+                    name: 'Sign Up',
+                }, 
+                {
+                    url: '/login',
+                    name: 'Login',
+                }
+            ] 
+        }
+    }
+%>
+
+<%
+    const links = getHeaderLinks(isAuth)
+%>
+
+
+<div>
+    <h1><%= title %></h1>
+    <% links.forEach((link) => { %>
+        <a href="<%= link.url %>">
+            <%= link.name %>
+        </a>
+    <% }) %>
+</div>
