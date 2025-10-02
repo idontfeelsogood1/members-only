@@ -10,7 +10,7 @@ const verifyCallBack = async (username, password, done) => {
         if (user.length <= 0) {
             return done(null, false)
         } else if (bcrypt.compare(password, hash)) {
-            return done(null, user[0])
+            return done(null, user)
         } else {
             return done(null, false)
         }
