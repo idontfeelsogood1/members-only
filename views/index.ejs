@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+<body>
+    <%- include('./header', { title: title, isAuth: isAuth }) %> 
+    <% if (!isAuth) { %>
+        <h1>Login or Sign-up to see who is talking.</h1>
+    <% } %>
+
+    <% users.forEach((obj) => { %>
+        <div>
+            <% if (isAuth && user.membership) { %>
+                <h2><%= obj.username %></h2>
+                <p><%= obj.text %></p>
+                <p><%= obj.timestamp %></p>
+            <% } else if (isAuth && user.admin) { %>
+                <h2><%= obj.username %></h2>
+                <p><%= obj.text %></p>
+                <p><%= obj.timestamp %></p>
+                <a href="/delete-message"><button>Delete</button></a>
+            <% } else { %>
+                <h2>Anonymous</h2>
+                <p><%= obj.text %></p>
+                <p><%= obj.timestamp %></p>  
+            <% } %>
+        </div>
+        <br>
+        <hr>
+        <br>
+    <% }) %>
+</body>
+</html>
+
