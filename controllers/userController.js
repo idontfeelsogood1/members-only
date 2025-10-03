@@ -29,7 +29,7 @@ async function registerPost(req, res, next) {
         const lastname = req.body.lastname
         const username = req.body.username
         const password = req.body.password
-        const isAdmin = req.body.isAdmin || 'FALSE'
+        const isAdmin = req.body.isAdmin ? true : false
 
         await db.addUser(firstname, lastname, username, password, isAdmin)
         
