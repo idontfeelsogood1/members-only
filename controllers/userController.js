@@ -96,7 +96,7 @@ function loginGet(req, res, next) {
     res.render('login')
 }
 
-async function loginPost(req, res, next) {
+function loginPost(req, res, next) {
     passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/login'
@@ -110,6 +110,11 @@ function logoutGet(req, res, next) {
     })
 }
 
+function membershipGet(req, res, next) {
+    res.render('membership')
+}
+
+
 module.exports = {
     indexGet,
     registerGet,
@@ -119,4 +124,5 @@ module.exports = {
     loginGet,
     loginPost,
     logoutGet,
+    membershipGet,
 }
