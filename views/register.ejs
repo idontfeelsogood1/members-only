@@ -1,3 +1,7 @@
+<% if (typeof errors === 'undefined') { %>
+  <% errors = false; %>
+<% } %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,26 +10,27 @@
     <title>Register</title>
 </head>
 <body>
+    <%- include('./errors', { errors: errors }) %>
     <form action="/register" method="POST">
         <p>
             <label for="firstname">First name: </label>
-            <input type="text" id="firstname" required>
+            <input type="text" name="firstname" id="firstname" required>
         </p>
         <p>
             <label for="lastname">Last name: </label>
-            <input type="text" id="lastname" required>
+            <input type="text" name="lastname" id="lastname" required>
         </p>
         <p>
             <label for="username">Username: </label>
-            <input type="text" id="username" required>
+            <input type="text" name="username" id="username" required>
         </p>
         <p>
             <label for="password">Password: </label>
-            <input type="text" id="password" required>
+            <input type="text" name="password" id="password" required>
         </p>
         <p>
             <label for="confirm-password">Confirm Password: </label>
-            <input type="text" id="confirm-password" required>
+            <input type="text" name="confirm-password" id="confirm-password" required>
         </p>
         <button type="submit">Sign up</button>
     </form>
