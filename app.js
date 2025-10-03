@@ -20,6 +20,7 @@ app.use(session({
 }));
 
 // Passport configs
+require('./config/passport')
 app.use(passport.initialize())
 app.use(passport.session())
 
