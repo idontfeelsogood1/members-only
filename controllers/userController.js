@@ -19,8 +19,25 @@ async function indexGet(req, res, next) {
     }
 }
 
-async function registerGet(req, res, next) {
+function registerGet(req, res, next) {
     res.render('register')
+}
+
+async function registerPost(req, res, next) {
+    try {
+        const firstname = req.body.firstname
+        const lastname = req.body.lastname
+        const username = req.body.username
+        const password = req.body.password
+        const isAdmin = req.body.isAdmin
+
+        await db.addUser(firstname, lastname, username, password, isAdmin)
+        
+        res.redirect('/login')
+    } catch(err) {
+        console.log("Erro at registerPost")
+        next(err)
+    }
 }
 
 const validateRegisterMiddlewares = [
@@ -79,4 +96,5 @@ module.exports = {
     registerGet,
     validateRegisterMiddlewares,
     validateRegister,
+    registerPost,
 }
