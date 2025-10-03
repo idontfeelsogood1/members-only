@@ -91,10 +91,15 @@ function validateRegister(req, res, next) {
     }
 }
 
+function loginGet(req, res, next) {
+    res.render('login')
+}
+
 module.exports = {
     indexGet,
     registerGet,
     validateRegisterMiddlewares,
     validateRegister,
     registerPost,
+    loginGet,
 }
