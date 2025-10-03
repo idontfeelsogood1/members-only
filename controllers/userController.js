@@ -35,7 +35,7 @@ async function registerPost(req, res, next) {
         
         res.redirect('/login')
     } catch(err) {
-        console.log("Erro at registerPost")
+        console.log("Error at registerPost")
         next(err)
     }
 }
