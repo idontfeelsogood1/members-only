@@ -1,5 +1,6 @@
 const db = require('../db/queries')
 const { body, validationResult } = require('express-validator')
+const passport = require('passport')
 
 async function indexGet(req, res, next) {
     try {
@@ -95,6 +96,13 @@ function loginGet(req, res, next) {
     res.render('login')
 }
 
+async function loginPost(req, res, next) {
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/login'
+    })(req, res, next)
+}
+
 module.exports = {
     indexGet,
     registerGet,
@@ -102,4 +110,5 @@ module.exports = {
     validateRegister,
     registerPost,
     loginGet,
+    loginPost,
 }
