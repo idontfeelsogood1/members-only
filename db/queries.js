@@ -1,4 +1,5 @@
 const db = require('./pool')
+const bcrypt = require('bcrypt')
 
 async function getUsersAndMessages() {
     try {
@@ -59,9 +60,23 @@ async function getHash(user_id) {
     }
 }
 
+async function addUser(firstname, lastname, username, password, isAdmin) {
+    try {
+        const hash = await bcrypt.hash(password, 10)
+        await db.query(`
+            INSERT INTO users (first_name, last_name, username, password_hash, membership, admin)
+            VALUES ($1, $2, $3, $4, $5, $6)
+        `, [firstname, lastname, username, hash, false, isAdmin])
+    } catch(err) {
+        console.log("DB error in getHash: ", err)
+        throw new Error(err)
+    }
+}
+
 module.exports = {
     getUsersAndMessages,
     getUserByUsername,
     getUser,
     getHash,
+    addUser,
 }
