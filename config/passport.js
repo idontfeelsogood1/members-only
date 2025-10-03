@@ -7,9 +7,9 @@ const verifyCallBack = async (username, password, done) => {
     try {
         const user = await db.getUserByUsername(username) 
         const hash = await db.getHash(user.id)
-        if (user.length <= 0) {
+        if (!user) {
             return done(null, false)
-        } else if (bcrypt.compare(password, hash)) {
+        } else if (await bcrypt.compare(password, hash)) {
             return done(null, user)
         } else {
             return done(null, false)
