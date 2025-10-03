@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-const db = requie('../db/queries')
+const db = require('../db/queries')
 const bcrypt = require('bcrypt')
 
 const verifyCallBack = async (username, password, done) => {
