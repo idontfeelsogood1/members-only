@@ -18,24 +18,12 @@ async function indexGet(req, res, next) {
     }
 }
 
+async function registerGet(req, res, next) {
+    res.render('register')
+}
+
+
 module.exports = {
     indexGet,
+    registerGet,
 }
-// user = req.isAuthenticated()
-// If user is authenticated 
-    // Show home button
-    // Show logout button 
-    // Show post message button
-
-    // If user is membership
-        // Show message authors 
-    // If user is admin
-        // Show message authors
-        // Show delete button
-
-// Else
-    // Show home button
-    // Show signup button
-    // Show login button
-
-    // Show Anonymous as authors
