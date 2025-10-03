@@ -103,6 +103,13 @@ async function loginPost(req, res, next) {
     })(req, res, next)
 }
 
+function logoutGet(req, res, next) {
+    req.logout((err) => {
+        if (err) return next(err)
+        res.redirect('/')
+    })
+}
+
 module.exports = {
     indexGet,
     registerGet,
@@ -111,4 +118,5 @@ module.exports = {
     registerPost,
     loginGet,
     loginPost,
+    logoutGet,
 }
