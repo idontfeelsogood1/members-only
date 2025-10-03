@@ -1,3 +1,7 @@
+<% if (typeof errors === 'undefined') { %>
+  <% errors = false; %>
+<% } %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +10,8 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="" method="">
+    <%- include('./errors', { errors: errors }) %>
+    <form action="/login" method="POST">
         <p>
             <label for="username">Username: </label>
             <input type="text" name="username" id="username">
@@ -15,6 +20,7 @@
             <label for="password">Password: </label>
             <input type="text" name="password" id="password">
         </p>
+        <button type="submit">Login</button>
     </form>
 </body>
 </html>
