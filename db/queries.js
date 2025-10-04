@@ -73,10 +73,24 @@ async function addUser(firstname, lastname, username, password, isAdmin) {
     }
 }
 
+async function setMembership(user_id, boolean) {
+    try {
+        await db.query(`
+            UPDATE users
+            SET membership = $1
+            WHERE id = $2
+        `, [boolean, user_id])
+    } catch(err) {
+        console.log("DB error at setMembership", err)
+        throw new Error(err)
+    }
+}
+
 module.exports = {
     getUsersAndMessages,
     getUserByUsername,
     getUser,
     getHash,
     addUser,
+    setMembership
 }
