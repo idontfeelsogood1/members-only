@@ -137,6 +137,15 @@ function newMessageGet(req, res, next) {
     res.render('new_message')
 }
 
+async function newMessagePost(req, res, next) {
+    try {
+        await db.addMessage(req.user.id, req.body.title, req.body.message) 
+        res.redirect('/')
+    } catch(err) {
+        console.log("Error in newMessagePost")
+        throw new Error(err)
+    }
+}
 
 module.exports = {
     indexGet,
@@ -151,4 +160,5 @@ module.exports = {
     membershipGet,
     membershipPost,
     newMessageGet,
+    newMessagePost,
 }
