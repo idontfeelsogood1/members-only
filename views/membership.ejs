@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-    <form action="/membership" method="POST">
-        <h1>Enter secret code to get membership.</h1>
-        <h2>Its 12345678 btw.</h2>
-        <p>
-            <label for="secret-code">Enter secret code: </label>
-            <input type="text" name="secret-code" id="secret-code">
-        </p>
-        <button type="submit">Get membership</button>
-    </form>
+  <form action="/membership" method="POST">
+    <h1>Enter secret code to get membership.</h1>
+    <h2>Its 12345678 btw.</h2>
+    <p>
+      <label for="secret-code">Enter secret code: </label>
+      <input type="text" name="secretCode" id="secret-code">
+    </p>
+    <button type="submit">Get membership</button>
+  </form>
+
+  <% if (typeof error_msg !== 'undefined' && error_msg) { %>
+    <p><%= error_msg %></p>
+  <% } %>
 </body>
 </html>
