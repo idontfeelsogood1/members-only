@@ -143,7 +143,17 @@ async function newMessagePost(req, res, next) {
         res.redirect('/')
     } catch(err) {
         console.log("Error in newMessagePost")
-        throw new Error(err)
+        next(err)
+    }
+}
+
+async function deleteMessageGet(req, res, next) {
+    try {
+        await db.deleteMessage(req.body.messageId)
+        res.redirect('/')
+    } catch(err) {
+        console.log("Error in deleteMessageGet")
+        next(err)
     }
 }
 
@@ -161,4 +171,5 @@ module.exports = {
     membershipPost,
     newMessageGet,
     newMessagePost,
+    deleteMessageGet,
 }
