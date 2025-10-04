@@ -114,6 +114,20 @@ function membershipGet(req, res, next) {
     res.render('membership')
 }
 
+async function membershipPost(req, res, next) {
+    try {
+        const secretCode = '12345678'
+        if (req.body.secretCode === secretCode) {
+            await db.setMembership(req.user.id, true)
+            return res.redirect('/')
+        } else {
+            return res.render('membership', { error_msg: "Wrong secret code." })
+        }
+    } catch(err) {
+        console.log("Error at membershipPost")
+        next(err)
+    }
+}
 
 module.exports = {
     indexGet,
@@ -125,4 +139,5 @@ module.exports = {
     loginPost,
     logoutGet,
     membershipGet,
+    membershipPost,
 }
