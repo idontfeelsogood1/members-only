@@ -133,6 +133,11 @@ async function membershipPost(req, res, next) {
     }
 }
 
+function newMessageGet(req, res, next) {
+    res.render('new_message')
+}
+
+
 module.exports = {
     indexGet,
     registerGet,
@@ -145,4 +150,5 @@ module.exports = {
     logoutGet,
     membershipGet,
     membershipPost,
+    newMessageGet,
 }
