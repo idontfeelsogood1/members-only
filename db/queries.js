@@ -9,7 +9,10 @@ async function getUsersAndMessages() {
                       admin,
                       title,
                   timestamp,
-                       text
+                       text,
+        users.id AS user_id,
+  messages.id AS message_id
+  
             FROM users
             JOIN messages
               ON users.id = messages.user_id
