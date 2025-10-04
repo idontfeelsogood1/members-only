@@ -149,7 +149,7 @@ async function newMessagePost(req, res, next) {
 
 async function deleteMessageGet(req, res, next) {
     try {
-        await db.deleteMessage(req.body.messageId)
+        await db.deleteMessage(req.params.messageId)
         res.redirect('/')
     } catch(err) {
         console.log("Error in deleteMessageGet")
