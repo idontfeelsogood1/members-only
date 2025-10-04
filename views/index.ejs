@@ -24,7 +24,7 @@
                 <h2><%= obj.username %></h2>
                 <p><%= obj.text %></p>
                 <p><%= obj.timestamp %></p>
-                <a href="/delete-message"><button>Delete</button></a>
+                <a href="/delete-message/<= obj.message_id %>"><button>Delete</button></a>
             <% } else { %>
                 <h2>Anonymous</h2>
                 <p><%= obj.text %></p>
