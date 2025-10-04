@@ -86,11 +86,26 @@ async function setMembership(user_id, boolean) {
     }
 }
 
+async function addMessage(user_id, title, message) {
+    try {
+        await db.query(`
+            INSERT INTO messages
+            (user_id, title, text)
+            VALUES 
+            ($1, $2, $3)    
+        `, [user_id, title, message])
+    } catch(err) {
+        console.log("DB error at addMessage", err)
+        throw new Error(err)
+    }
+}
+
 module.exports = {
     getUsersAndMessages,
     getUserByUsername,
     getUser,
     getHash,
     addUser,
-    setMembership
+    setMembership,
+    addMessage
 }
