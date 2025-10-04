@@ -100,6 +100,18 @@ async function addMessage(user_id, title, message) {
     }
 }
 
+async function deleteMessage(message_id) {
+    try {
+        await db.query(`
+            DELETE FROM messages
+            WHERE id = $1
+        `, [message_id])
+    } catch(err) {
+        console.log("DB error at deleteMessage", err)
+        throw new Error(err)
+    }
+}
+
 module.exports = {
     getUsersAndMessages,
     getUserByUsername,
@@ -107,5 +119,6 @@ module.exports = {
     getHash,
     addUser,
     setMembership,
-    addMessage
+    addMessage,
+    deleteMessage,
 }
