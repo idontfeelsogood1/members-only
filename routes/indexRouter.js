@@ -1,35 +1,39 @@
 const express = require('express')
 const router = express.Router()
+const userController = require('../controllers/userController')
 
 // Show all messages
 router.get('/', userController.indexGet)
 
 // Register
-// router.get('/register', userController.registerGet) 
-// router.post('/register', userController.registerPost)
+router.get('/register', userController.registerGet) 
+router.post('/register', 
+    userController.validateRegisterMiddlewares,
+    userController.validateRegister,
+    userController.registerPost
+)
 
-// // Login
-// router.get('/login', userController.loginGet)
-// router.post('/login', userController.loginPost)
+// Login
+router.get('/login', userController.loginGet)
+router.post('/login', userController.loginPost)
+router.get('/login-error', userController.loginErrorGet)
 
-// // Membership/admin
-// router.get('/membership', userController.membershipGet)
-// router.post('/membership', userController.membershipPost)
-// router.get('/admin', userController.adminGet)
-// router.post('/admin', userController.adminPost)
+// Logout
+router.get('/logout', userController.logoutGet)
 
-// // Post message
-// router.get('/new-message', userController.newMessageGet)
-// router.post('/new-message', userController.newMessagePost)
+// Membership
+router.get('/membership', userController.membershipGet)
+router.post('/membership', userController.membershipPost)
 
-// // Delete message
-// router.get('/delete-message', userController.deleteMessageGet)
+// Post message
+router.get('/new-message', userController.newMessageGet)
+router.post('/new-message', userController.newMessagePost)
 
-// // Logout
-// router.get('/logout', userController.logoutGet)
+// Delete message
+router.get('/delete-message/:messageId', userController.deleteMessageGet)
 
 // Error handling middleware
-app.use((err, req, res, next) => {
+router.use((err, req, res, next) => {
     console.error(err.stack) 
 
     const statusCode = err.status || 500
@@ -40,3 +44,5 @@ app.use((err, req, res, next) => {
         message: message 
     })
 })
+
+module.exports = router
